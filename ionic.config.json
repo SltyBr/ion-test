@@ -1,0 +1,7 @@
+{
+  "name": "field-notes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
