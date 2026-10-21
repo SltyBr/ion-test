@@ -8,5 +8,5 @@ import { Theme } from './services/theme';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+  theme = inject(Theme);
 }

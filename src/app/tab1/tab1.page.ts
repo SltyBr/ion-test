@@ -4,6 +4,7 @@ import {
   inject,
   signal,
   OnInit,
+  OnDestroy,
   viewChild,
   ElementRef,
 } from '@angular/core';
@@ -28,16 +29,19 @@ import {
   RefresherCustomEvent,
   SearchbarCustomEvent,
   ViewWillEnter,
+  ViewWillLeave,
   ModalController,
   IonRouterOutlet,
   AlertController,
   ToastController,
+  IonRouterLink,
 } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
 import { Notes } from '../services/notes';
 import { NoteFormComponent } from '../components/note-form/note-form.component';
 import { Note } from '../models/note';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -61,9 +65,13 @@ import { Note } from '../models/note';
     IonFab,
     IonFabButton,
     IonIcon,
+    RouterLink,
+    IonRouterLink,
   ],
 })
-export class Tab1Page implements OnInit, ViewWillEnter {
+export class Tab1Page
+  implements OnInit, OnDestroy, ViewWillEnter, ViewWillLeave
+{
   private notesService = inject(Notes);
   private modalCtrl = inject(ModalController);
   private routerOutlet = inject(IonRouterOutlet);
@@ -90,6 +98,14 @@ export class Tab1Page implements OnInit, ViewWillEnter {
 
   ionViewWillEnter() {
     console.log('[Tab1] ionViewWillEnter');
+  }
+
+  ionViewWillLeave() {
+    console.log('[Tab1] ionViewWillLeave');
+  }
+
+  ngOnDestroy() {
+    console.log('[Tab1] ngOnDestroy');
   }
 
   onSearch(event: SearchbarCustomEvent) {

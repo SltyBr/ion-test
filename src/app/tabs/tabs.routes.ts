@@ -12,6 +12,13 @@ export const routes: Routes = [
           import('../tab1/tab1.page').then((m) => m.Tab1Page),
       },
       {
+        path: 'tab1/note/:id',
+        loadComponent: () =>
+          import('../note-detail/note-detail.page').then(
+            (m) => m.NoteDetailPage,
+          ),
+      },
+      {
         path: 'tab2',
         loadComponent: () =>
           import('../tab2/tab2.page').then((m) => m.Tab2Page),

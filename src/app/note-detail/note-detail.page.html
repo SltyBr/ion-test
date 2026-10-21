@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1" text="Назад"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ note()?.title ?? 'Заметка' }}</ion-title>
+    @if (note()) {
+      <ion-buttons slot="end">
+        <ion-button color="danger" aria-label="Удалить" (click)="remove()">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (note(); as note) {
+    <ion-text color="medium">
+      <p>{{ note.createdAt | date: 'd MMM y, HH:mm' }}</p>
+    </ion-text>
+
+    <p class="text">{{ note.text || 'Без текста' }}</p>
+
+    @if (note.lat !== undefined && note.lng !== undefined) {
+      <ion-text color="medium">
+        <p>📍 {{ note.lat }}, {{ note.lng }}</p>
+      </ion-text>
+    }
+  } @else {
+    <div class="empty">Заметка не найдена</div>
+  }
+</ion-content>
