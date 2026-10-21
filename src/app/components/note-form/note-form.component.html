@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (ionFocus)="modalCtrl.dismiss(null, 'cancel')"
+        >Отмена</ion-button
+      >
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button
+        (ionFocus)="modalCtrl.dismiss(note.value, 'confirm')"
+        [disabled]="!note.controls.title.value"
+        >Сохранить</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [formGroup]="note">
+  <ion-input
+    formControlName="title"
+    labelPlacement="floating"
+    label="Заголовок"
+  ></ion-input>
+  <ion-textarea
+    formControlName="text"
+    label="Текст"
+    [autoGrow]="true"
+  ></ion-textarea>
+</ion-content>
