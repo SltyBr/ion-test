@@ -26,7 +26,7 @@
   <ion-list>
     @for (note of filtered(); track note.id) {
     <ion-item-sliding #sliding>
-      <ion-item>
+      <ion-item [routerLink]="['note', note.id]" routerDirection="forward">
         <ion-label>
           <h2>{{ note.title }}</h2>
           <p>{{ note.createdAt | date: 'd MMM, HH:mm' }}</p>
